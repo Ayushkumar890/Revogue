@@ -1,15 +1,16 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-require('dotenv').config()
+const connectDB = async () => {
+  try {
+    await mongoose.connect("mongodb://localhost:27017/Revogue", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("==============Mongodb Database Connected Successfully==============");
+  } catch (error) {
+    console.error("❌ Database connection failed", error);
+    process.exit(1); // Exit on failure
+  }
+};
 
-exports.connect = () => {
-    mongoose.connect(process.env.MONGODB_URL, {
-        dbName: "Revogue",
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }).then(() => console.log("DB Connected Successfully"))
-        .catch((error) => {
-            console.log("this error occured" + error)
-            process.exit(1)
-        })
-}
+module.exports = connectDB;
