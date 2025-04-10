@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react'
+import  { useContext, useState } from 'react'
 import {assets} from '../assets/assets'
 import { Link, NavLink } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
+import ThemeBtn from './ThemeBtn';
 
 const Navbar = () => {
 
@@ -19,7 +20,7 @@ const Navbar = () => {
   return (
     <div className='flex items-center justify-between py-5 font-medium'>
       
-      <Link to='/'><img src={assets.logo} className='w-36' alt="" /></Link>
+      <Link to='/'> <span className='text-[50px] text-black'> Revogue</span></Link>
 
       <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
         
@@ -39,6 +40,8 @@ const Navbar = () => {
             <p>CONTACT</p>
             <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
         </NavLink>
+
+        <ThemeBtn/>
 
       </ul>
 

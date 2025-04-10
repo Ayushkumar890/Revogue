@@ -92,7 +92,8 @@ export const assets = {
     contact_img,
     razorpay_logo,
     stripe_logo,
-    cross_icon
+    cross_icon,
+    p_img11
 }
 
 export const products = [
