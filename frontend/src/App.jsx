@@ -40,7 +40,7 @@ useEffect(() => {
 
 
   return (
-    <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+    <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] dark:bg-zinc-900 '>
       <ThemeProvider value={{ themeMode, lightTheme, darkTheme }}>
         <ToastContainer />
         <Navbar />
