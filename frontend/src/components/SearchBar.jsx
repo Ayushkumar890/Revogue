@@ -12,21 +12,13 @@ const SearchBar = () => {
     setVisible(location.pathname.includes('collection'))
   }, [location])
 
-  // Optional: Debounce to optimize performance
-  // useEffect(() => {
-  //   const delayDebounce = setTimeout(() => {
-  //     // Call API or do something with `search` here
-  //   }, 300)
-  //   return () => clearTimeout(delayDebounce)
-  // }, [search])
-
   return showSearch && visible ? (
-    <div className='border-t border-b bg-gray-50 dark:bg-gray-800 text-center'>
-      <div className='inline-flex items-center justify-center border border-gray-400 dark:border-gray-600 px-5 py-2 my-5 mx-3 rounded-full w-3/4 sm:w-1/2 bg-white dark:bg-gray-700'>
+    <div className='border-t border-b bg-zinc-50 dark:bg-zinc-800 text-center'>
+      <div className='inline-flex items-center justify-center border border-zinc-400 dark:border-zinc-600 px-5 py-2 my-5 mx-3 rounded-full w-3/4 sm:w-1/2 bg-white dark:bg-zinc-700'>
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className='flex-1 outline-none bg-inherit text-sm text-gray-800 dark:text-white'
+          className='flex-1 outline-none bg-inherit text-sm text-zinc-800 dark:text-white'
           type='text'
           placeholder='Search'
         />
