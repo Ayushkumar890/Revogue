@@ -16,6 +16,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify'
 import { ThemeProvider } from './context/theme'
+import OrderDetails from './pages/OrderDetails'
 
 const App = () => {
   const [themeMode, setThemeMode] = useState("light");
@@ -55,6 +56,7 @@ useEffect(() => {
           <Route path='/login' element={<Login />} />
           <Route path='/place-order' element={<PlaceOrder />} />
           <Route path='/orders' element={<Orders />} />
+          <Route path="/order-details" element={<OrderDetails />} />
           <Route path='/verify' element={<Verify />} />
         </Routes>
         <Footer />
