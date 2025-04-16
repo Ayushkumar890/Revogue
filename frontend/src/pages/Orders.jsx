@@ -36,6 +36,7 @@ const Orders = () => {
       }
     } catch (error) {
       console.error("Failed to load orders:", error);
+
     }
   };
 
@@ -52,6 +53,7 @@ const Orders = () => {
       <div className="text-2xl">
         <Title text1={"MY"} text2={"ORDERS"} />
       </div>
+
 
       <div>
         {orderData.map((item, index) => (
@@ -91,6 +93,7 @@ const Orders = () => {
               <button
                 onClick={() => handleTrackOrder(item)}
                 className="border px-4 py-2 text-sm font-medium rounded-sm"
+
               >
                 Track Order
               </button>

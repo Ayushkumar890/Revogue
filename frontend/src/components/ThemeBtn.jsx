@@ -14,6 +14,7 @@ export default function ThemeBtn() {
     };
 
     return (
+
         <button
             onClick={toggleTheme}
             className="text-2xl p-2 rounded-full transition duration-300 hover:rotate-12 hover:scale-110"
@@ -26,4 +27,5 @@ export default function ThemeBtn() {
             )}
         </button>
     );
+
 }

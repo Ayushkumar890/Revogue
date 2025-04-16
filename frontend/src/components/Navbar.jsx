@@ -31,7 +31,7 @@ const Navbar = () => {
       </Link>
 
       {/* Desktop Menu */}
-      <ul className='hidden sm:flex gap-5 text-sm text-gray-700 dark:text-gray-300'>
+      <ul className='hidden sm:flex gap-5 text-sm text-zinc-700 dark:text-zinc-300'>
         {['/', '/collection', '/about', '/contact'].map((path, idx) => (
           <NavLink
             key={path}
@@ -45,7 +45,7 @@ const Navbar = () => {
             <p>
               {['HOME', 'COLLECTION', 'ABOUT', 'CONTACT'][idx]}
             </p>
-            <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
+            <hr className='w-2/4 border-none h-[1.5px] bg-zinc-700 hidden' />
           </NavLink>
         ))}
       </ul>
@@ -121,7 +121,7 @@ const Navbar = () => {
           visible ? 'w-full' : 'w-0'
         }`}
       >
-        <div className='flex flex-col text-gray-600 dark:text-gray-300'>
+        <div className='flex flex-col text-zinc-600 dark:text-zinc-300'>
           <div
             onClick={() => setVisible(false)}
             className='flex items-center gap-4 p-3 cursor-pointer'

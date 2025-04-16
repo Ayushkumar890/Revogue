@@ -21,6 +21,7 @@ const About = () => {
               </p>
               <b className='text-gray-800'>Our Mission</b>
               <p>At ReVogue, our mission is to make fashion more accessible, flexible, and community-driven. We’re committed to building a platform that celebrates individuality, encourages reuse, and offers a seamless experience—from browsing and renting to listing and buying.</p>
+
           </div>
       </div>
 
@@ -48,6 +49,7 @@ const About = () => {
     </p>
   </div>
 </div>
+
 
 
       <NewsletterBox/>
