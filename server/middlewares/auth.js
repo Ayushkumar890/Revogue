@@ -5,7 +5,7 @@ const userModel = require("../models/users");
 exports.loginCheck = (req, res, next) => {
   try {
     let token = req.headers.token;
-    token = token.replace("Bearer ", "");
+    token = token.replace("revogue ", "");
     decode = jwt.verify(token, JWT_SECRET);
     req.userDetails = decode;
     next();
@@ -31,7 +31,6 @@ exports.isAuth = (req, res, next) => {
 exports.isAdmin = async (req, res, next) => {
   try {
     let reqUser = await userModel.findById(req.body.loggedInUserId);
-    // If user role 0 that's mean not admin it's customer
     if (reqUser.userRole === 0) {
       res.status(403).json({ error: "Access denied" });
     }
