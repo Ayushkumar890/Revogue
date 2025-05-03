@@ -2,8 +2,9 @@ import { useContext, useState } from 'react'
 import { assets } from '../assets/assets'
 import { Link, NavLink } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext'
-import { FiSearch, FiUser, FiShoppingCart, FiMenu, FiChevronLeft } from 'react-icons/fi'
+import { FiSearch, FiUser, FiShoppingCart, FiMenu } from 'react-icons/fi'
 import ThemeBtn from './ThemeBtn'
+import axios from 'axios'
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false)
@@ -11,18 +12,26 @@ const Navbar = () => {
   const {
     setShowSearch,
     getCartCount,
-    navigate,
+    backendUrl,
     token,
+    navigate,
     setToken,
     setCartItems,
   } = useContext(ShopContext)
 
-  const logout = () => {
-    navigate('/login')
-    localStorage.removeItem('token')
-    setToken('')
-    setCartItems({})
-  }
+  const handleLogout = async () => {
+    try {
+      const response = await axios.get(backendUrl+'/api/user/logout', {
+        withCredentials: true,
+      });
+      setToken('');
+      setCartItems({});
+      console.log(response.data.message);
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
 
   return (
     <div className='flex items-center justify-between py-5 font-medium'>
@@ -85,7 +94,7 @@ const Navbar = () => {
             Orders
           </p>
           <p
-            onClick={logout}
+            onClick={handleLogout}
             className='cursor-pointer hover:text-black dark:hover:text-white'
           >
             Logout

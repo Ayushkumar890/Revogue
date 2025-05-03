@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Collection from './pages/Collection'
@@ -17,6 +17,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify'
 import { ThemeProvider } from './context/theme'
 import OrderDetails from './pages/OrderDetails'
+import Signup from './pages/Signup'
+import Otp from './pages/Otp'
 
 const App = () => {
   const [themeMode, setThemeMode] = useState("light");
@@ -54,6 +56,8 @@ useEffect(() => {
           <Route path='/product/:productId' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/otp' element={<Otp />} />
+          <Route path='/signup' element={<Signup />} />
           <Route path='/place-order' element={<PlaceOrder />} />
           <Route path='/orders' element={<Orders />} />
           <Route path="/order-details" element={<OrderDetails />} />

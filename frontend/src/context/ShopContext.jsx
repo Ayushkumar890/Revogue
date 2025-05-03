@@ -1,7 +1,8 @@
-import { createContext, useEffect, useState } from "react";
+import  { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import PropTypes from 'prop-types';
 
 export const ShopContext = createContext();
 
@@ -123,33 +124,46 @@ const ShopContextProvider = (props) => {
             toast.error(error.message)
         }
     }
-
-    const getUserCart = async ( token ) => {
+    const getUserCart = async () => {
         try {
-            
-            const response = await axios.post(backendUrl + '/api/cart/get',{},{headers:{token}})
+            const response = await axios.post(backendUrl + '/api/cart/get', {}, { withCredentials: true });
             if (response.data.success) {
-                setCartItems(response.data.cartData)
+                setCartItems(response.data.cartData);
             }
         } catch (error) {
-            console.log(error)
-            toast.error(error.message)
+            console.log(error);
+            toast.error(error.message);
         }
-    }
+    };
+    const checkAuth = async () => {
+        try {
+            const res = await axios.get(backendUrl + '/api/user/check_auth', {
+                withCredentials: true 
+            });
+
+            if (res.data.success && res.data.token) {
+                setToken(res.data.token);
+                // console.log(res.data.token);
+                getUserCart(res.data.token);
+            }
+            else{
+                console.log(res.data.message);
+            }
+        } catch (err) {
+            console.log(err);
+            setToken('');
+        }
+    };
+   
 
     useEffect(() => {
         getProductsData()
     }, [])
 
     useEffect(() => {
-        if (!token && localStorage.getItem('token')) {
-            setToken(localStorage.getItem('token'))
-            getUserCart(localStorage.getItem('token'))
-        }
-        if (token) {
-            getUserCart(token)
-        }
-    }, [token])
+        checkAuth();
+    }, []);
+    
 
     const value = {
         products, currency, delivery_fee,
@@ -157,7 +171,7 @@ const ShopContextProvider = (props) => {
         cartItems, addToCart,setCartItems,
         getCartCount, updateQuantity,
         getCartAmount, navigate, backendUrl,
-        setToken, token
+        setToken, token,checkAuth
     }
 
     return (
@@ -167,5 +181,8 @@ const ShopContextProvider = (props) => {
     )
 
 }
+ShopContextProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default ShopContextProvider;
