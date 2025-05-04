@@ -20,7 +20,8 @@ const placeOrder = async (req,res) => {
     
     try {
         
-        const { userId, items, amount, address} = req.body;
+        const {items, amount, address} = req.body;
+        const userId = req.user._id;
 
         const orderData = {
             userId,
@@ -31,9 +32,12 @@ const placeOrder = async (req,res) => {
             payment:false,
             date: Date.now()
         }
+// const userData = await userModel.findById(userId)
+
 
         const newOrder = new orderModel(orderData)
         await newOrder.save()
+
 
         await userModel.findByIdAndUpdate(userId,{cartData:{}})
 
@@ -51,7 +55,9 @@ const placeOrder = async (req,res) => {
 const placeOrderStripe = async (req,res) => {
     try {
         
-        const { userId, items, amount, address} = req.body
+        const {  items, amount, address} = req.body
+        const userId = req.user._id;
+
         const { origin } = req.headers;
 
         const orderData = {
@@ -107,7 +113,8 @@ const placeOrderStripe = async (req,res) => {
 // Verify Stripe 
 const verifyStripe = async (req,res) => {
 
-    const { orderId, success, userId } = req.body
+    const { orderId, success } = req.body
+    const userId = req.user._id;
 
     try {
         if (success === "true") {
@@ -130,7 +137,8 @@ const verifyStripe = async (req,res) => {
 const placeOrderRazorpay = async (req,res) => {
     try {
         
-        const { userId, items, amount, address} = req.body
+        const {  items, amount, address} = req.body
+        const userId = req.user._id;
 
         const orderData = {
             userId,
@@ -168,7 +176,8 @@ const placeOrderRazorpay = async (req,res) => {
 const verifyRazorpay = async (req,res) => {
     try {
         
-        const { userId, razorpay_order_id  } = req.body
+        const {  razorpay_order_id  } = req.body
+        const userId = req.user._id;
 
         const orderInfo = await razorpayInstance.orders.fetch(razorpay_order_id)
         if (orderInfo.status === 'paid') {
@@ -204,8 +213,7 @@ const allOrders = async (req,res) => {
 // User Order Data For Forntend
 const userOrders = async (req,res) => {
     try {
-        
-        const { userId } = req.body
+        const userId = req.user._id;
 
         const orders = await orderModel.find({ userId })
         res.json({success:true,orders})
