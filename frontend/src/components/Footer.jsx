@@ -1,4 +1,3 @@
-import React from 'react';
 // import { assets } from '../assets/assets';
 import { FaPhoneAlt, FaEnvelope, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
@@ -9,7 +8,7 @@ const Footer = () => {
 
         {/* Brand Info */}
         <div>
-          <h2 className="text-4xl font-bold text-black dark:text-white mb-4">Revogue</h2>
+          <h2 className="text-4xl font-bold text-orange-600 mb-4">Revogue</h2>
           <p className="max-w-md text-zinc-600 dark:text-zinc-400">
             Elevate your style with Revogue. We bring you premium fashion, fast delivery, and unmatched comfort — all in one place.
           </p>
@@ -22,7 +21,7 @@ const Footer = () => {
 
         {/* Company Links */}
         <div>
-          <h3 className="text-lg font-semibold text-black dark:text-white mb-4">Company</h3>
+          <h3 className="text-lg font-semibold text-orange-600 mb-4">Company</h3>
           <ul className="space-y-2">
             <li className="hover:text-black dark:hover:text-white transition cursor-pointer">Home</li>
             <li className="hover:text-black dark:hover:text-white transition cursor-pointer">About Us</li>
@@ -33,7 +32,7 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div>
-          <h3 className="text-lg font-semibold text-black dark:text-white mb-4">Get in Touch</h3>
+          <h3 className="text-lg font-semibold text-orange-600 mb-4">Get in Touch</h3>
           <ul className="space-y-3">
             <li className="flex items-center gap-2">
               <FaPhoneAlt /> <span>+91 9042679168</span>

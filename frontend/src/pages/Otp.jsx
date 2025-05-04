@@ -4,7 +4,6 @@ import { Link, Outlet } from 'react-router-dom';
 import validator from "validator";
 import { ShopContext } from '../context/ShopContext';
 
-
 function Otp() {
     const { navigate, backendUrl } = useContext(ShopContext);
     const [email, setEmail] = useState('');
@@ -20,8 +19,6 @@ function Otp() {
         }
     };
 
-    // const navigate = useNavigate();
-
     const handleSendOtp = async () => {
         if (!email || emailError) {
             setMessage("Please enter a valid email.");
@@ -29,80 +26,72 @@ function Otp() {
         }
         try {
             setLoading(true);
-           const response = await axios.post(backendUrl + '/api/user/sendotp',{ email });
+            const response = await axios.post(backendUrl + '/api/user/sendotp', { email });
             setMessage(response.data.message);
             if (response.data.success) {
                 setTimeout(() => {
                     setLoading(false);
-                    navigate('/signup', { state: { email } }); // Pass email as state
+                    navigate('/signup', { state: { email } });
                 }, 1000);
             } else {
                 setLoading(false);
             }
         } catch (error) {
-            if (error.response && error.response.data && error.response.data.message) {
-                setMessage(error.response.data.message);
-            } else {
-                setMessage("Error sending OTP");
-            }
+            setMessage(error.response?.data?.message || "Error sending OTP");
             setLoading(false);
             console.error(error);
         }
     };
 
-    const messageColor = message === "OTP sent successfully" ? 'green' : 'red';
+    const messageColor = message === "OTP sent successfully" ? 'text-green-500' : 'text-red-500';
 
     return (
-        <div className='bg-black min-h-screen'>
+        <div className="min-h-screen bg-transparent text-black  dark:text-white transition-colors duration-300">
             <div className="text-center pt-20">
-                <div className="items-center">
-                    <svg fill="none" viewBox="0 0 24 24" className="w-12 h-12 mx-auto text-blue-500" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                </div>
-                <div>
-                    <h2 className="text-4xl tracking-tight text-white mb-10">
-                        First Generate Your OTP
-                    </h2>
-                </div>
+                <svg fill="none" viewBox="0 0 24 24" className="w-12 h-12 mx-auto text-blue-500" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <h2 className="text-4xl tracking-tight mb-10">First Generate Your OTP</h2>
             </div>
+
             <div className="flex justify-center my-2 mx-4 md:mx-0">
-                <div className="w-full max-w-md rounded-lg shadow-md p-6 bg-neutral-900">
-                    <div className="flex flex-wrap -mx-3 mb-6">
-                        <div className="w-full md:w-full px-3 mb-6">
-                            <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='Email'>Email address</label>
-                            <input
-                                className="appearance-none block w-full bg-neutral-950 text-white font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
-                                type="email"
-                                value={email}
-                                onChange={(e) => {
-                                    const newEmail = e.target.value;
-                                    setEmail(newEmail);
-                                    validateEmail(newEmail);
-                                }}
-                                placeholder="Enter your email"
-                                required
-                            />
-                            <div style={{ color: "red" }}> {emailError} </div>
-                        </div>
-                        <div className="w-full flex items-center justify-between px-3 py-1 mb-3">
-                            <div className="w-full text-right">
-                                <Link to="/" className="text-blue-500 text-sm tracking-tight pl-2">Home</Link>
-                            </div>
-                        </div>
-                        <div className="w-full md:w-full px-3">
-                            <button
-                                onClick={handleSendOtp}
-                                type='submit'
-                                className="block w-full bg-green text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-green focus:outline-none"
-                            >
-                                {loading ? 'wait...' : 'Send OTP'}
-                            </button>
-                        </div>
-                        <div className='pt-8 mx-auto font-thin text-xl -mb-5'>
-                            {message && <p style={{ color: messageColor }}>{message}</p>}
-                        </div>
+                <div className="w-full max-w-md rounded-lg shadow-md p-6 bg-gray-100 dark:bg-neutral-900">
+                    <div className="mb-6">
+                        <label className="block uppercase tracking-wide text-sm font-bold mb-2" htmlFor='Email'>
+                            Email address
+                        </label>
+                        <input
+                            className="appearance-none block w-full bg-white dark:bg-neutral-800 text-black dark:text-white border border-gray-300 dark:border-neutral-700 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            type="email"
+                            value={email}
+                            onChange={(e) => {
+                                const newEmail = e.target.value;
+                                setEmail(newEmail);
+                                validateEmail(newEmail);
+                            }}
+                            placeholder="Enter your email"
+                            required
+                        />
+                        {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
                     </div>
+
+                    <div className="flex justify-between mb-4">
+                        <Link to="/" className="text-blue-500 text-sm hover:underline">Home</Link>
+                    </div>
+
+                    <button
+                        onClick={handleSendOtp}
+                        className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition-colors"
+                    >
+                        {loading ? 'Wait...' : 'Send OTP'}
+                    </button>
+
+                    {message && (
+                        <div className={`pt-6 text-center text-xl font-light ${messageColor}`}>
+                            <p>{message}</p>
+                        </div>
+                    )}
+
                     <Outlet />
                 </div>
             </div>

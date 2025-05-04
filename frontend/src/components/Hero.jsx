@@ -21,7 +21,7 @@ const Hero = () => {
           Discover the newest styles, carefully curated for modern living. High-quality, timeless pieces made to elevate your wardrobe.
         </p>
 
-        <button className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-full text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg">
+        <button className="inline-flex items-center gap-2 bg-orange-600  text-white dark:text-white px-6 py-3 rounded-full text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg">
           Shop Now
           <ArrowRight className="w-4 h-4" />
         </button>
@@ -30,7 +30,7 @@ const Hero = () => {
       {/* Right: Image */}
       <div className="w-full sm:w-1/2 h-[300px] sm:h-[500px] flex items-center justify-center">
         <img
-          src={assets.p_img11}
+          src={assets.home_a}
           alt="Latest Arrivals"
           className="w-full h-full object-cover rounded-xl"
         />

@@ -27,7 +27,7 @@ const NewsletterBox = () => {
         />
         <button
           type='submit'
-          className='bg-black hover:bg-zinc-800 dark:bg-white dark:hover:bg-zinc-300 text-white dark:text-black text-xs px-6 py-3 rounded transition-colors duration-300'
+          className='bg-orange-600 dark:hover:bg-zinc-700 text-white dark:text-white text-xs px-6 py-3 rounded transition-colors duration-300'
         >
           SUBSCRIBE
         </button>
