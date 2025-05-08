@@ -1,10 +1,10 @@
-import React from "react";
+// import React from "react";
 import { assets } from "../assets/assets";
 import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="w-full min-h-[80vh] sm:min-h-[90vh] flex flex-col-reverse sm:flex-row items-center justify-center bg-white dark:bg-zinc-950 overflow-hidden rounded-3xl shadow-md px-6 sm:px-12 md:px-20">
+    <section className="w-full min-h-[80vh] sm:min-h-[90vh] flex flex-col-reverse sm:flex-row items-center justify-center bg-zinc-100 dark:bg-zinc-600 overflow-hidden rounded-3xl px-6 sm:px-12 md:px-20 shadow-zinc-600 dark:shadow-zinc-100 dark:shadow-lg shadow-md mb-6">
       {/* Left: Content */}
       <div className="w-full sm:w-1/2 flex flex-col justify-center items-center sm:items-start gap-6 text-center sm:text-left py-10 sm:py-0">
         <div className="flex items-center gap-2">
@@ -28,11 +28,11 @@ const Hero = () => {
       </div>
 
       {/* Right: Image */}
-      <div className="w-full sm:w-1/2 h-[300px] sm:h-[500px] flex items-center justify-center">
+      <div className="w-full sm:w-1/2 h-[300px] sm:h-[500px] flex items-center justify-center z-10">
         <img
           src={assets.home_a}
           alt="Latest Arrivals"
-          className="w-full h-full object-cover rounded-xl"
+          className="w-full h-full object-cover bg-transparent rounded-xl"
         />
       </div>
     </section>
