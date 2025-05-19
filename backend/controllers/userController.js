@@ -8,7 +8,7 @@ import OTP from '../models/OTP.js';
 import otpGenerator from 'otp-generator';
 
 const createToken = (id) => {
-    return jwt.sign({ id }, import.meta.env.JWT_SECRET)
+    return jwt.sign({ id }, process.env.JWT_SECRET)
 }
 
 // Route for user login
@@ -90,8 +90,8 @@ const adminLogin = async (req, res) => {
 
         const { email, password } = req.body
 
-        if (email === import.meta.env.ADMIN_EMAIL && password === import.meta.env.ADMIN_PASSWORD) {
-            const token = jwt.sign(email + password, import.meta.env.JWT_SECRET);
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            const token = jwt.sign(email + password, process.env.JWT_SECRET);
             res.json({ success: true, token })
         } else {
             res.json({ success: false, message: "Invalid credentials" })
@@ -184,14 +184,14 @@ const signup = async (req, res) => {
         });
 
         // Create JWT
-        const token = jwt.sign({ id: newUser._id }, import.meta.env.JWT_SECRET, {
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
             expiresIn: '1d',
         });
 
         // Optional: Set token in cookie
         res.cookie('token', token, {
             httpOnly: true,
-            secure: import.meta.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV === 'production',
             maxAge: 24 * 60 * 60 * 1000, // 1 day
         });
 
@@ -244,13 +244,13 @@ const login = async (req, res) => {
             id: user._id,
         };
 
-        const token = jwt.sign(payload, import.meta.env.JWT_SECRET, {
+        const token = jwt.sign(payload, process.env.JWT_SECRET, {
             expiresIn: "7d" 
         });
         
         res.cookie("jwtToken", token, {
             httpOnly: true,      
-            secure: import.meta.env.NODE_ENV === "production",
+            secure: process.env.NODE_ENV === "production",
             sameSite: 'Lax',
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
         });
@@ -276,7 +276,7 @@ const check_auth = async (req, res) => {
     // console.log("Token hai ki nhi: ", token);
 
     if (token) {
-        jwt.verify(token, import.meta.env.JWT_SECRET, (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
             if (err) {
                 return res.status(401).json({ success: false, message: 'Invalid or expired token' });
             }
@@ -297,7 +297,7 @@ const logout = (req, res) => {
     res.cookie('jwtToken', '', {
         httpOnly: true,
         expires: new Date(Date.now() - 1),
-        secure: import.meta.env.NODE_ENV === 'production'
+        secure: process.env.NODE_ENV === 'production'
     });
     res.status(200).json({ success: true, message: 'Logged out successfully' });
 };

@@ -12,7 +12,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const app = express()
-const port = import.meta.env.PORT || 4000
+const port = process.env.PORT || 4000
 
 connectDB()
 connectCloudinary()
@@ -41,6 +41,7 @@ app.use(express.static(frontendPath))
 app.get('/', (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'))
 })
+
 
 // Serve admin frontend
 app.use('/admin', express.static(adminPath))
