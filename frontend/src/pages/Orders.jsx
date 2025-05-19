@@ -16,7 +16,7 @@ const Orders = () => {
       }
 
       const response = await axios.post(
-        backendUrl + "/api/order/userorders",
+        "https://revogue.onrender.com/api/order/userorders",
         {},
         {
           headers: {

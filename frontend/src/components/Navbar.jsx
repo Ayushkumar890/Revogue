@@ -24,7 +24,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get(backendUrl + '/api/user/logout', {
+      const response = await axios.get('https://revogue.onrender.com/api/user/logout', {
         withCredentials: true,
       });
       setToken('');

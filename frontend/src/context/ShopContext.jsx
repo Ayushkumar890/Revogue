@@ -33,7 +33,7 @@ const addToCart = async (itemId, size) => {
 
     try {
         await axios.post(
-            backendUrl + '/api/cart/add',
+            'https://revogue.onrender.com/api/cart/add',
             { itemId, size },
             {
                 headers: {
@@ -88,7 +88,7 @@ const addToCart = async (itemId, size) => {
         if (token) {
             try {
 
-                await axios.post(backendUrl + '/api/cart/update', { itemId, size, quantity }, {
+                await axios.post('https://revogue.onrender.com/api/cart/update', { itemId, size, quantity }, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -123,7 +123,7 @@ const addToCart = async (itemId, size) => {
     const getProductsData = async () => {
         try {
 
-            const response = await axios.get(backendUrl + '/api/product/list')
+            const response = await axios.get('https://revogue.onrender.com/api/product/list')
             if (response.data.success) {
                 setProducts(response.data.products.reverse())
             } else {
@@ -137,7 +137,7 @@ const addToCart = async (itemId, size) => {
     }
     const getUserCart = async () => {
         try {
-            const response = await axios.post(backendUrl + '/api/cart/get', {}, {
+            const response = await axios.post('https://revogue.onrender.com/api/cart/get', {}, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -153,7 +153,7 @@ const addToCart = async (itemId, size) => {
     };
     const checkAuth = async () => {
         try {
-            const res = await axios.get(backendUrl + '/api/user/check_auth', {
+            const res = await axios.get('https://revogue.onrender.com/api/user/check_auth', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

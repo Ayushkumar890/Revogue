@@ -41,7 +41,7 @@ const PlaceOrder = () => {
                 console.log(response)
                 try {
 
-                    const { data } = await axios.post(backendUrl + '/api/order/verifyRazorpay', response, { headers: { token } })
+                    const { data } = await axios.post('https://revogue.onrender.com/api/order/verifyRazorpay', response, { headers: { token } })
                     if (data.success) {
                         navigate('/orders')
                         setCartItems({})
@@ -87,7 +87,7 @@ const PlaceOrder = () => {
                 // API Calls for COD
                 case 'cod': {
                     console.log("Token being sent:", token); // Debugging line
-                    const response = await axios.post(backendUrl + '/api/order/place', orderData, {
+                    const response = await axios.post('https://revogue.onrender.com/api/order/place', orderData, {
                         headers: { token },
                         withCredentials: true,
                     });
@@ -117,7 +117,7 @@ const PlaceOrder = () => {
 
                 case 'razorpay': {
 
-                    const responseRazorpay = await axios.post(backendUrl + '/api/order/razorpay', orderData, {
+                    const responseRazorpay = await axios.post('https://revogue.onrender.com/api/order/razorpay', orderData, {
                         headers: { token },
                         withCredentials: true,
                     })
