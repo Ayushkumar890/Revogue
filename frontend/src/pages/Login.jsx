@@ -24,7 +24,7 @@ function Login() {
         event.preventDefault();
         try {
             setLoading(true);
-            const response = await axios.post(backendUrl + '/api/user/login', { email, password }, { withCredentials: true });
+            const response = await axios.post('https://revogue.onrender.com/api/user/login', { email, password }, { withCredentials: true });
             setMessage(response.data.message);
 
             setTimeout(() => {

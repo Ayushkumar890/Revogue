@@ -37,7 +37,7 @@ function Signup() {
 
         try {
             setLoading(true);
-            const response = await axios.post(backendUrl + '/api/user/signup', { name, email, password, otp },{ withCredentials: true });
+            const response = await axios.post('https://revogue.onrender.com/api/user/signup', { name, email, password, otp },{ withCredentials: true });
             setMessage(response.data.message);
             setTimeout(() => {
                 setLoading(false);

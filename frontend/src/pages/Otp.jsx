@@ -26,7 +26,7 @@ function Otp() {
         }
         try {
             setLoading(true);
-            const response = await axios.post(backendUrl + '/api/user/sendotp', { email });
+            const response = await axios.post('https://revogue.onrender.com/api/user/sendotp', { email });
             setMessage(response.data.message);
             if (response.data.success) {
                 setTimeout(() => {
