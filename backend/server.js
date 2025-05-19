@@ -12,7 +12,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const app = express()
-const port = process.env.PORT || 4000
+const port = import.meta.env.PORT || 4000
 
 connectDB()
 connectCloudinary()
