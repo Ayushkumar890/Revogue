@@ -20,7 +20,7 @@ connectCloudinary()
 app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
-  origin: ['https://revogue.onrender.com'],
+  origin: ['https://revogue.onrender.com','https://revogue.onrender.com/admin/'],
   credentials: true
 }))
 
