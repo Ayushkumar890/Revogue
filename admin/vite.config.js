@@ -7,5 +7,5 @@ export default defineConfig({
   server: {
     port: 5174
   },
-  base: '/admin/', // 👈 This line is CRITICAL
+  base: '/admin', // ✅
 })
