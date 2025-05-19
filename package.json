@@ -4,10 +4,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon backend/server.js",
-    "server": "nodemon backend/server.js",
-    "build": "npm install && npm install --prefix frontend  && npm install --prefix admin && npm run build --prefix frontend && npm run build --prefix admin"
-  },
+  "start": "node backend/server.js",
+  "server": "nodemon backend/server.js",
+  "build": "npm install && npm install --prefix frontend && npm install --prefix admin && npm run build --prefix frontend && npm run build --prefix admin"
+},
   "author": "",
   "license": "ISC",
   "description": "",

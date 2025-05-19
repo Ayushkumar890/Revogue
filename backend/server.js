@@ -8,7 +8,8 @@ import productRouter from './routes/productRoute.js'
 import cartRouter from './routes/cartRoute.js'
 import orderRouter from './routes/orderRoute.js'
 import cookieParser from 'cookie-parser'
-
+import path from 'path'
+import { fileURLToPath } from 'url'
 // App Config
 const app = express()
 const port = process.env.PORT || 4000
@@ -32,8 +33,16 @@ app.use('/api/cart', cartRouter)
 app.use('/api/order', orderRouter)
 
 // Root Route
-app.get('/', (req, res) => {
-  res.send("API Working")
+
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const __frontendPath = path.join(__dirname, '../frontend/dist')
+
+app.use(express.static(__frontendPath))
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__frontendPath, 'index.html'))
 })
 
 // Global Error Handling Middleware
