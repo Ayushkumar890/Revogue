@@ -1,13 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
+  base: '/', // this is default, just being explicit
   plugins: [react()],
-  server: {
-    proxy: {
-      '/api': 'https://revogue-backend.onrender.com'
-    }
-  }
 })
-

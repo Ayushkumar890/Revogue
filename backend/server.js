@@ -42,9 +42,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'))
 })
 
-
 // Serve admin frontend
 app.use('/admin', express.static(adminPath))
+
 app.get('/admin/*', (req, res) => {
   res.sendFile(path.join(adminPath, 'index.html'))
 })
