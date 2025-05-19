@@ -22,7 +22,7 @@ connectCloudinary()
 app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'], // or your frontend domain
+  origin: ['https://revogue.onrender.com/'], // or your frontend domain
   credentials: true // Allow cookies to be sent
 }))
 
