@@ -10,48 +10,50 @@ import orderRouter from './routes/orderRoute.js'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 import { fileURLToPath } from 'url'
-// App Config
+
 const app = express()
 const port = process.env.PORT || 4000
 
-// Connect to DB and Cloudinary
 connectDB()
 connectCloudinary()
 
-// Middleware setup
 app.use(cookieParser())
 app.use(express.json())
 app.use(cors({
-  origin: ['https://revogue.onrender.com'], // or your frontend domain
-  credentials: true // Allow cookies to be sent
+  origin: ['https://revogue.onrender.com'],
+  credentials: true
 }))
 
-// API Routes
 app.use('/api/user', userRouter)
 app.use('/api/product', productRouter)
 app.use('/api/cart', cartRouter)
 app.use('/api/order', orderRouter)
 
-// Root Route
-
-
+// Setup __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const __frontendPath = path.join(__dirname, '../frontend/dist')
+const frontendPath = path.join(__dirname, '../frontend/dist')
+const adminPath = path.join(__dirname, '../admin/dist')
 
-app.use(express.static(__frontendPath))
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__frontendPath, 'index.html'))
+// Serve main frontend
+app.use(express.static(frontendPath))
+app.get('/', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'))
 })
 
-// Global Error Handling Middleware
+// Serve admin frontend
+app.use('/admin', express.static(adminPath))
+app.get('/admin/*', (req, res) => {
+  res.sendFile(path.join(adminPath, 'index.html'))
+})
+
+// Global error handler
 app.use((err, req, res, next) => {
   console.error(err)
   res.status(500).send({ error: 'Something went wrong!' })
 })
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server started on PORT : ${port}`)
 })
